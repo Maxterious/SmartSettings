@@ -1,4 +1,4 @@
-package com.bytemax.smartsettings
+package com.bytemax.smartsettings.ui
 
 sealed class Screen(val route: String) {
     data object HomeScreen : Screen("home_screen")

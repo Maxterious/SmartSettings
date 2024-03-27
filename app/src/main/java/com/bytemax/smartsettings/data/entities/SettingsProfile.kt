@@ -1,14 +1,18 @@
 package com.bytemax.smartsettings.data.entities
 
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.bytemax.smartsettings.data.SettingTypes
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.bytemax.smartsettings.data.SettingType
 
+@Entity
 data class SettingsProfile(
-    val id: Long,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val name: String,
     val icon: ImageVector,
-    val enabledSettings: List<SettingTypes>,
-    val disabledSettings: List<SettingTypes>,
+    val enabledSettings: List<SettingType>,
+    val disabledSettings: List<SettingType>,
     val isActive: Boolean,
     val triggerDistance: Int
 )

@@ -27,9 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.bytemax.smartsettings.Screen
-import com.bytemax.smartsettings.data.SettingTypes
+import com.bytemax.smartsettings.data.SettingType
 import com.bytemax.smartsettings.data.entities.SettingsProfile
+import com.bytemax.smartsettings.ui.Screen
 import com.bytemax.smartsettings.ui.theme.SmartSettingsTheme
 
 @Composable
@@ -53,8 +53,8 @@ fun HomeScreen(navController: NavController) {
                                     id = 1,
                                     name = "Home",
                                     icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingTypes.WIFI),
-                                    disabledSettings = listOf(SettingTypes.CELLULAR),
+                                    enabledSettings = listOf(SettingType.WIFI),
+                                    disabledSettings = listOf(SettingType.CELLULAR),
                                     isActive = true,
                                     triggerDistance = 1
                                 ),
@@ -62,8 +62,8 @@ fun HomeScreen(navController: NavController) {
                                     id = 1,
                                     name = "Home",
                                     icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingTypes.WIFI),
-                                    disabledSettings = listOf(SettingTypes.CELLULAR),
+                                    enabledSettings = listOf(SettingType.WIFI),
+                                    disabledSettings = listOf(SettingType.CELLULAR),
                                     isActive = true,
                                     triggerDistance = 1
                                 ),
@@ -71,8 +71,8 @@ fun HomeScreen(navController: NavController) {
                                     id = 1,
                                     name = "Home",
                                     icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingTypes.WIFI),
-                                    disabledSettings = listOf(SettingTypes.CELLULAR),
+                                    enabledSettings = listOf(SettingType.WIFI),
+                                    disabledSettings = listOf(SettingType.CELLULAR),
                                     isActive = true,
                                     triggerDistance = 1
                                 ),
@@ -80,8 +80,8 @@ fun HomeScreen(navController: NavController) {
                                     id = 1,
                                     name = "Home",
                                     icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingTypes.WIFI),
-                                    disabledSettings = listOf(SettingTypes.CELLULAR),
+                                    enabledSettings = listOf(SettingType.WIFI),
+                                    disabledSettings = listOf(SettingType.CELLULAR),
                                     isActive = true,
                                     triggerDistance = 1
                                 ),
@@ -89,8 +89,8 @@ fun HomeScreen(navController: NavController) {
                                     id = 1,
                                     name = "Home",
                                     icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingTypes.WIFI),
-                                    disabledSettings = listOf(SettingTypes.CELLULAR),
+                                    enabledSettings = listOf(SettingType.WIFI),
+                                    disabledSettings = listOf(SettingType.CELLULAR),
                                     isActive = true,
                                     triggerDistance = 1
                                 )

@@ -1,5 +1,5 @@
 package com.bytemax.smartsettings.data
 
-enum class SettingTypes {
+enum class SettingType {
     WIFI, CELLULAR, BLUETOOTH
 }
