@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -23,17 +23,25 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.bytemax.smartsettings.data.SettingType
 import com.bytemax.smartsettings.data.entities.SettingsProfile
-import com.bytemax.smartsettings.ui.Screen
 import com.bytemax.smartsettings.ui.theme.SmartSettingsTheme
+import com.bytemax.smartsettings.ui.viewmodels.HomeViewModel
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(
+    navController: NavController,
+    homeViewModel: HomeViewModel = hiltViewModel<HomeViewModel>()
+) {
+    val profileList: List<SettingsProfile> by homeViewModel.profileList.collectAsStateWithLifecycle()
+
     SmartSettingsTheme {
         // A surface container using the 'background' color from the theme
         Surface(
@@ -48,58 +56,24 @@ fun HomeScreen(navController: NavController) {
                         Modifier.padding(it)
                     ) {
                         ProfileCardList(
-                            profileCards = listOf(
-                                SettingsProfile(
-                                    id = 1,
-                                    name = "Home",
-                                    icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingType.WIFI),
-                                    disabledSettings = listOf(SettingType.CELLULAR),
-                                    isActive = true,
-                                    triggerDistance = 1
-                                ),
-                                SettingsProfile(
-                                    id = 1,
-                                    name = "Home",
-                                    icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingType.WIFI),
-                                    disabledSettings = listOf(SettingType.CELLULAR),
-                                    isActive = true,
-                                    triggerDistance = 1
-                                ),
-                                SettingsProfile(
-                                    id = 1,
-                                    name = "Home",
-                                    icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingType.WIFI),
-                                    disabledSettings = listOf(SettingType.CELLULAR),
-                                    isActive = true,
-                                    triggerDistance = 1
-                                ),
-                                SettingsProfile(
-                                    id = 1,
-                                    name = "Home",
-                                    icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingType.WIFI),
-                                    disabledSettings = listOf(SettingType.CELLULAR),
-                                    isActive = true,
-                                    triggerDistance = 1
-                                ),
-                                SettingsProfile(
-                                    id = 1,
-                                    name = "Home",
-                                    icon = Icons.Default.Home,
-                                    enabledSettings = listOf(SettingType.WIFI),
-                                    disabledSettings = listOf(SettingType.CELLULAR),
-                                    isActive = true,
-                                    triggerDistance = 1
-                                )
-                            )
+                            profileCards = profileList
                         )
                     }
                 },
                 floatingActionButton = {
-                    FloatingActionButton(onClick = { navController.navigate(Screen.CreateProfileScreen.route) }) {
+//                    FloatingActionButton(onClick = { navController.navigate(Screen.CreateProfileScreen.route) }) {
+                    FloatingActionButton(onClick = {
+                        homeViewModel.addProfile(
+                            SettingsProfile(
+                                name = "new",
+                                icon = Icons.Default.AccountCircle,
+                                enabledSettings = listOf(SettingType.CELLULAR),
+                                disabledSettings = listOf(SettingType.BLUETOOTH),
+                                isActive = true,
+                                triggerDistance = 5
+                            )
+                        )
+                    }) {
                         Icon(Icons.Default.Add, "Add new Profile")
                     }
                 }

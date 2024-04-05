@@ -1,6 +1,8 @@
 package com.bytemax.smartsettings.data
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.room.TypeConverter
 import com.google.gson.Gson
@@ -13,20 +15,22 @@ class Converters {
     }
 
     @TypeConverter
-    fun iconByName(name: String): ImageVector {
-        val cl = Class.forName("androidx.compose.material.icons.filled.${name}Kt")
-        val method = cl.declaredMethods.first()
-        return method.invoke(null, Icons.Filled) as ImageVector
+    fun toIcon(iconName: String): ImageVector {
+        val iconMap = mapOf(
+            "Filled.Home" to Icons.Default.Home,
+            "Filled.AccountCircle" to Icons.Default.AccountCircle,
+        )
+        return iconMap[iconName] ?: error("Icon not found: $iconName")
     }
 
     @TypeConverter
-    fun fromSettingType(value: List<SettingType>): String? {
+    fun fromSettingType(value: List<SettingType>): String {
         val type = object : TypeToken<List<SettingType>>() {}.type
         return Gson().toJson(value, type)
     }
 
     @TypeConverter
-    fun toSettingType(value: String): List<SettingType?> {
+    fun toSettingType(value: String): List<SettingType> {
         val type = object : TypeToken<List<SettingType>>() {}.type
         return Gson().fromJson(value, type)
     }
