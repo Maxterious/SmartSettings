@@ -5,3 +5,9 @@
         alias(libs.plugins.jetbrainsKotlinAndroid) apply false
         alias(libs.plugins.daggerHiltAndroid) apply false
     }
+
+buildscript {
+    dependencies {
+        classpath(libs.secrets.gradle.plugin)
+    }
+}
