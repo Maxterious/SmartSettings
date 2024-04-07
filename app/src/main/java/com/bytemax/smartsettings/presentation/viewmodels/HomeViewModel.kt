@@ -1,4 +1,4 @@
-package com.bytemax.smartsettings.ui.viewmodels
+package com.bytemax.smartsettings.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

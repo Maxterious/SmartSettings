@@ -1,4 +1,4 @@
-package com.bytemax.smartsettings.ui.theme
+package com.bytemax.smartsettings.presentation.theme
 
 import android.app.Activity
 import android.graphics.Color

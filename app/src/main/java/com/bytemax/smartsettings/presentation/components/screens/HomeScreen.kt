@@ -1,4 +1,4 @@
-package com.bytemax.smartsettings.ui.components.screens
+package com.bytemax.smartsettings.presentation.components.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,8 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
@@ -32,8 +31,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.bytemax.smartsettings.data.SettingType
 import com.bytemax.smartsettings.data.entities.SettingsProfile
-import com.bytemax.smartsettings.ui.theme.SmartSettingsTheme
-import com.bytemax.smartsettings.ui.viewmodels.HomeViewModel
+import com.bytemax.smartsettings.presentation.theme.SmartSettingsTheme
+import com.bytemax.smartsettings.presentation.viewmodels.HomeViewModel
 
 @Composable
 fun HomeScreen(
@@ -84,13 +83,12 @@ fun HomeScreen(
 
 @Composable
 fun ProfileCardList(profileCards: List<SettingsProfile>) {
-    Column(
+    LazyColumn(
         Modifier
             .windowInsetsPadding(WindowInsets.safeContent)
-            .verticalScroll(state = rememberScrollState())
     ) {
-        for (card in profileCards) {
-            ProfileCard(settingsProfile = card)
+        items(profileCards.size) { index ->
+            ProfileCard(settingsProfile = profileCards[index])
         }
     }
 }

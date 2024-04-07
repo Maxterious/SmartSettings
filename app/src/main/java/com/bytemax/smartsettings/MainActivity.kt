@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.bytemax.smartsettings.ui.theme.SmartSettingsTheme
+import com.bytemax.smartsettings.presentation.theme.SmartSettingsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

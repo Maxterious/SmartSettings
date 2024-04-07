@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bytemax.smartsettings.ui.Screen
-import com.bytemax.smartsettings.ui.components.screens.CreateProfileScreen
-import com.bytemax.smartsettings.ui.components.screens.HomeScreen
+import com.bytemax.smartsettings.presentation.Screen
+import com.bytemax.smartsettings.presentation.components.screens.CreateProfileScreen
+import com.bytemax.smartsettings.presentation.components.screens.HomeScreen
 
 @Composable
 fun Navigation() {

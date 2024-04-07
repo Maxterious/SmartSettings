@@ -1,4 +1,4 @@
-package com.bytemax.smartsettings.ui.components.screens
+package com.bytemax.smartsettings.presentation.components.screens
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

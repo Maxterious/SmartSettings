@@ -1,4 +1,4 @@
-package com.bytemax.smartsettings.ui.theme
+package com.bytemax.smartsettings.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
