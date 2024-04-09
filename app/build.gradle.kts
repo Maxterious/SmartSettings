@@ -71,6 +71,8 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.play.services.location) //TODO needed?
+
     //Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
@@ -85,6 +87,7 @@ dependencies {
 
     // Maps SDK for Android
     implementation(libs.play.services.maps)
+    implementation(libs.maps.compose)
 
 
     //TestImplementations

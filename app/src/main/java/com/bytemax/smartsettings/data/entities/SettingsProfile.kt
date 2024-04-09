@@ -25,5 +25,9 @@ data class SettingsProfile(
 
     val isActive: Boolean,
 
-    val triggerDistance: Int
+    val triggerDistance: Int,
+
+    val lat: Double,
+
+    val long: Double
 )

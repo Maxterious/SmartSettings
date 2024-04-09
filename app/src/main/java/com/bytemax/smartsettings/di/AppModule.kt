@@ -19,7 +19,6 @@ object AppModule {
     fun providesAppDatabase(app: Application): AppDatabase {
         return Room
             .databaseBuilder(app, AppDatabase::class.java, "SmartSettingsDB")
-            .allowMainThreadQueries() //TODO disable
             .build()
     }
 

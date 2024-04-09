@@ -8,15 +8,15 @@ import javax.inject.Inject
 class SettingsProfileRepository @Inject constructor(
     private val settingsProfileDao: SettingsProfileDao
 ) {
-    fun insertSettingsProfile(settingsProfile: SettingsProfile) {
+    suspend fun insertSettingsProfile(settingsProfile: SettingsProfile) {
         settingsProfileDao.insertSettingsProfile(settingsProfile)
     }
 
-    fun deleteSettingsProfile(settingsProfile: SettingsProfile) {
+    suspend fun deleteSettingsProfile(settingsProfile: SettingsProfile) {
         settingsProfileDao.deleteSettingsProfile(settingsProfile)
     }
 
-    fun upsertSettingsProfile(settingsProfile: SettingsProfile) {
+    suspend fun upsertSettingsProfile(settingsProfile: SettingsProfile) {
         settingsProfileDao.upsertSettingsProfile(settingsProfile)
     }
 

@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface SettingsProfileDao {
     @Insert
-    fun insertSettingsProfile(settingsProfile: SettingsProfile)
+    suspend fun insertSettingsProfile(settingsProfile: SettingsProfile)
 
     @Delete
-    fun deleteSettingsProfile(settingsProfile: SettingsProfile)
+    suspend fun deleteSettingsProfile(settingsProfile: SettingsProfile)
 
     @Upsert
-    fun upsertSettingsProfile(settingsProfile: SettingsProfile)
+    suspend fun upsertSettingsProfile(settingsProfile: SettingsProfile)
 
     @Query("SELECT * FROM SettingsProfile")
     fun getProfiles(): Flow<List<SettingsProfile>>
