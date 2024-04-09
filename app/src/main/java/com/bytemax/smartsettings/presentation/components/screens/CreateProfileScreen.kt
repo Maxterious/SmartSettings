@@ -43,15 +43,29 @@ fun CreateProfileScreen(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         TextField(
-                            value = viewModel.profileName.value,
-                            onValueChange = { newValue -> viewModel.profileName.value = newValue },
+                            value = viewModel.profileName,
+                            onValueChange = { newValue -> viewModel.updateProfileName(newValue) },
                             label = {
                                 Text("Enter a profile name")
                             },
                             leadingIcon = {
                                 Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile name")
-                            }
+                            },
+                            singleLine = true
                         )
+
+                        TextField(
+                            value = viewModel.profileName,
+                            onValueChange = { newValue -> viewModel.updateProfileName(newValue) },
+                            label = {
+                                Text("Enter a profile name")
+                            },
+                            leadingIcon = {
+                                Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "Profile name")
+                            },
+                            singleLine = true
+                        )
+
                     }
                 }
             )
