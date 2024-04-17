@@ -1,5 +1,6 @@
 package com.bytemax.smartsettings.presentation.components.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -25,14 +27,19 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.bytemax.smartsettings.data.SettingType
 import com.bytemax.smartsettings.data.entities.SettingsProfile
-import com.bytemax.smartsettings.presentation.Screen
+import com.bytemax.smartsettings.presentation.NavigationRoutes
 import com.bytemax.smartsettings.presentation.theme.SmartSettingsTheme
 import com.bytemax.smartsettings.presentation.viewmodels.HomeViewModel
 import com.google.android.gms.maps.model.CameraPosition
@@ -50,7 +57,6 @@ fun HomeScreen(
     val profileList: List<SettingsProfile> by viewModel.profileList.collectAsStateWithLifecycle()
 
     SmartSettingsTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -67,21 +73,7 @@ fun HomeScreen(
                     }
                 },
                 floatingActionButton = {
-                    FloatingActionButton(onClick = { navController.navigate(Screen.CreateProfileScreen.route) }) {
-//                    FloatingActionButton(onClick = {
-//                        homeViewModel.addProfile(
-//                            SettingsProfile(
-//                                name = "new",
-//                                icon = Icons.Default.AccountCircle,
-//                                enabledSettings = listOf(SettingType.CELLULAR),
-//                                disabledSettings = listOf(SettingType.BLUETOOTH),
-//                                isActive = true,
-//                                triggerDistance = 5,
-//                                lat = 52.52010050321414,
-//                                long = 13.40469898528646,
-//                            )
-//                        )
-//                    }) {
+                    FloatingActionButton(onClick = { navController.navigate(NavigationRoutes.CreateProfileScreen.route) }) {
                         Icon(Icons.Default.Add, "Add new Profile")
                     }
                 }
@@ -142,22 +134,11 @@ fun ProfileCard(settingsProfile: SettingsProfile) {
             }
         }
 
-
-        Row(modifier = Modifier.padding(start = 10.dp, end = 10.dp)) {
-            Text(text = "Enable: ")
-
-            for (setting in settingsProfile.enabledSettings) {
-                Text(text = setting.name)
-            }
-        }
-
-        Row(modifier = Modifier.padding(start = 10.dp, end = 10.dp)) {
-            Text(text = "Disable: ")
-
-            for (setting in settingsProfile.disabledSettings) {
-                Text(text = setting.name)
-            }
-        }
+        CurrentSettings(
+            modifier = Modifier.fillMaxWidth(),
+            enabledSettings = settingsProfile.enabledSettings,
+            disabledSettings = settingsProfile.disabledSettings
+        )
 
         MapPreview(settingsProfile)
     }
@@ -185,4 +166,30 @@ fun MapPreview(settingsProfile: SettingsProfile) {
             )
         ),
     )
+}
+
+@Composable
+fun CurrentSettings(
+    modifier: Modifier = Modifier,
+    enabledSettings: List<SettingType>,
+    disabledSettings: List<SettingType>
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        for (setting in SettingType.entries) {
+            Image(
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(all = 10.dp),
+                painter = painterResource(id = setting.iconDrawableId),
+                contentDescription = setting.name,
+                colorFilter =
+                if (enabledSettings.contains(setting)) ColorFilter.tint(Color.Green)
+                else ColorFilter.tint(Color.Red),
+                alignment = Alignment.Center,
+            )
+        }
+    }
 }

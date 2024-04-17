@@ -19,19 +19,31 @@ class CreateProfileViewModel @Inject constructor(
 ) : ViewModel() {
 
     var profileName by mutableStateOf("")
-    private set
+        private set
 
-    var enabledSettings = mutableStateListOf<SettingType>() //TODO show as checklist
+    var enabledSettings = mutableStateListOf<SettingType>()
+        private set
+
+    var disabledSettings = mutableStateListOf<SettingType>()
         private set
 
     fun updateProfileName(input: String) {
         profileName = input
     }
 
-
     fun addProfile(profile: SettingsProfile) {
         viewModelScope.launch {
             settingsProfileRepository.upsertSettingsProfile(profile)
         }
+    }
+
+    fun enableSetting(setting: SettingType) {
+        enabledSettings.add(setting)
+        disabledSettings.remove(setting)
+    }
+
+    fun disableSetting(setting: SettingType) {
+        enabledSettings.remove(setting)
+        disabledSettings.add(setting)
     }
 }
